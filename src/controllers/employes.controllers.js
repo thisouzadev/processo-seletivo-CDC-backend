@@ -21,7 +21,21 @@ const getAll = async (req, res, next) => {
   }
 }
 
+const update = async (req, res, next) => {
+  try {
+    const { nome, cpf, departamento, salario, data_de_nascimento } = req.body;
+    const { id } = req.params;
+    const updatedEmployerResponse = await employerService.update(id, nome, cpf, departamento, salario, data_de_nascimento);
+    return res.status(success).json(updatedEmployerResponse);
+  } catch (error) {
+    console.log(`PUT UPDATE -> ${error.message}`);
+    next(error);
+  }
+}
+
+
 module.exports = {
   create,
   getAll,
+  update
 };

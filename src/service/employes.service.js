@@ -23,7 +23,7 @@ const create = async (nome, cpf, departamento, salario, data_de_nascimento) => {
   const { error } = schemaUser.validate({ nome, cpf, departamento, salario, data_de_nascimento });
   if (error) throw errorConstructor(badRequest, error.message);
   const isValidCpf = await getUserByCPF(cpf);
-  if (isValidCpf) throw errorConstructor(conflict, 'Conflict');
+  if (isValidCpf) throw errorConstructor(conflict, 'CPF already exists');
   const createdUserResponse = await employes.create({
     nome, cpf, departamento, salario, data_de_nascimento
   });
@@ -37,7 +37,20 @@ const findAll = async () => {
   return getAllEmployersResponse;
 }
 
+const update = async (id, nome, cpf, departamento, salario, data_de_nascimento) => {
+  const { error } = schemaUser.validate({ nome, cpf, departamento, salario, data_de_nascimento });
+  if (error) throw errorConstructor(badRequest, error.message);
+  const updatedUserResponse = await employes.update({
+    nome, cpf, departamento, salario, data_de_nascimento
+  }, {
+    where: { id }
+  });
+  return updatedUserResponse;  
+}
+
+
 module.exports = {
   create,
-  findAll
+  findAll,
+  update
 };
