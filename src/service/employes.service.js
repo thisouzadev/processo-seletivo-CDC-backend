@@ -5,10 +5,10 @@ const errorConstructor = require('../utils/functions/errorhandlers');
 
 const schemaUser = Joi.object({
   nome: Joi.string().required(),
-  cpf: Joi.string().min(11).required().message('CPF must be 11 characters long'),
+  cpf: Joi.string().min(11).required(),
   departamento: Joi.string().required(),
   salario: Joi.string().required(),
-  data_de_nascimento: Joi.string().required().message('Data de nascimento inválida'),
+  data_de_nascimento: Joi.string().required(),
 });
 
 const getUserByCPF = async (cpf) => {
