@@ -33,9 +33,20 @@ const update = async (req, res, next) => {
   }
 }
 
+const deleteEmployer = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deletedEmployerResponse = await employerService.deleteEmployer(id);
+    return res.status(success).json(deletedEmployerResponse);
+  } catch (error) {
+    console.log(`DELETE -> ${error.message}`);
+    next(error);
+  }
+}
 
 module.exports = {
   create,
   getAll,
-  update
+  update,
+  deleteEmployer
 };

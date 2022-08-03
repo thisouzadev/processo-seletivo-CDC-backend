@@ -48,9 +48,16 @@ const update = async (id, nome, cpf, departamento, salario, data_de_nascimento) 
   return updatedUserResponse;  
 }
 
+const deleteEmployer = async (id) => {
+  const deletedUserResponse = await employes.destroy({
+    where: { id }
+  });
+  return deletedUserResponse;
+}
 
 module.exports = {
   create,
   findAll,
-  update
+  update,
+  deleteEmployer
 };
