@@ -32,6 +32,8 @@ const create = async (nome, cpf, departamento, salario, data_de_nascimento) => {
 
 const findAll = async () => {
   const getAllEmployersResponse = await employes.findAll({
+    order: [
+      ['nome', 'ASC']],
     raw: true,
   });
   return getAllEmployersResponse;
