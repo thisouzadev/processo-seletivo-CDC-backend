@@ -30,7 +30,14 @@ const create = async (nome, cpf, departamento, salario, data_de_nascimento) => {
   return createdUserResponse;
 };
 
+const findAll = async () => {
+  const getAllEmployersResponse = await employes.findAll({
+    raw: true,
+  });
+  return getAllEmployersResponse;
+}
 
 module.exports = {
   create,
+  findAll
 };

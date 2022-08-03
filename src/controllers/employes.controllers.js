@@ -1,6 +1,5 @@
 const employerService = require('../service/employes.service.js');
 const { success, created } = require('../utils/dictionary/statusCode');
-
 const create = async (req, res, next) => {
   try {
     const { nome, cpf, departamento, salario, data_de_nascimento } = req.body;
@@ -12,6 +11,17 @@ const create = async (req, res, next) => {
   }
 }
 
+const getAll = async (req, res, next) => {
+  try {
+    const getAllEmployersResponse = await employerService.findAll();
+    return res.status(success).json(getAllEmployersResponse);
+  } catch (error) {
+    console.log(`GET ALL -> ${error.message}`);
+    next(error);
+  }
+}
+
 module.exports = {
   create,
+  getAll,
 };
