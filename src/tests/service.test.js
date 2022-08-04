@@ -1,8 +1,6 @@
 const employerService = require('../service/employes.service.js');
 
-
-
-describe('EmployersController', () => {
+describe('EmployersService', () => {
   describe('create', () => {
     it('should create a new employer', async () => {
       // nome, cpf, departamento, salario, data_de_nascimento
