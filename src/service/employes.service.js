@@ -57,9 +57,15 @@ const deleteEmployer = async (id) => {
   return deletedUserResponse;
 }
 
+const findByPrimaryKey = async (id) => {
+  const getUserResponse = await employes.findByPk(id);
+  return getUserResponse;
+}
+
 module.exports = {
   create,
   findAll,
   update,
-  deleteEmployer
+  deleteEmployer,
+  findByPrimaryKey,
 };

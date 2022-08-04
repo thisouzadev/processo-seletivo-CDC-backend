@@ -21,6 +21,17 @@ const getAll = async (req, res, next) => {
   }
 }
 
+const findByPrimaryKey = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const getUserResponse = await employerService.findByPrimaryKey(id);
+    return res.status(success).json(getUserResponse);
+  } catch (error) {
+    console.log(`GET BY ID -> ${error.message}`);
+    next(error);
+  }
+}
+
 const update = async (req, res, next) => {
   try {
     const { nome, cpf, departamento, salario, data_de_nascimento } = req.body;
@@ -48,5 +59,6 @@ module.exports = {
   create,
   getAll,
   update,
-  deleteEmployer
+  deleteEmployer,
+  findByPrimaryKey,
 };
