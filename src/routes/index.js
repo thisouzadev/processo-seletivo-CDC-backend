@@ -7,4 +7,5 @@ router.get('/register', employesController.getAll);
 router.put('/register/:id', employesController.update);
 router.delete('/register/:id', employesController.deleteEmployer);
 router.get('/register/:id', employesController.findByPrimaryKey);
+router.get('/register/search/:name/:departament', employesController.getEmployeByNameAndDepartament);
 module.exports = router;

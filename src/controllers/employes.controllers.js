@@ -55,10 +55,22 @@ const deleteEmployer = async (req, res, next) => {
   }
 }
 
+const getEmployeByNameAndDepartament = async (req, res, next) => {
+  try {
+    const { name, departament } = req.params;
+    const getUserResponse = await employerService.getEmployeByNameAndDepartament(name, departament);
+    return res.status(success).json(getUserResponse);
+  } catch (error) {
+    console.log(`GET BY NAME AND DEPARTAMENT -> ${error.message}`);
+    next(error);
+  }
+}
+
 module.exports = {
   create,
   getAll,
   update,
   deleteEmployer,
   findByPrimaryKey,
+  getEmployeByNameAndDepartament,
 };

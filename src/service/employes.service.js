@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const { Op } = require('sequelize');
 const { employes } = require('../database/models');
 const { badRequest, conflict, notFound } = require('../utils/dictionary/statusCode');
 const errorConstructor = require('../utils/functions/errorhandlers');
@@ -62,10 +63,26 @@ const findByPrimaryKey = async (id) => {
   return getUserResponse;
 }
 
+const getEmployeByNameAndDepartament = async (name, departament) => {
+  const getUserResponse = await employes.findAll({
+    where: {
+      nome: {
+        [Op.like]: `%${name}%`
+      },
+      departamento: {
+        [Op.like]: `%${departament}%`
+      }
+    },
+    raw: true,
+  });
+  return getUserResponse;
+}
+
 module.exports = {
   create,
   findAll,
   update,
   deleteEmployer,
   findByPrimaryKey,
+  getEmployeByNameAndDepartament,
 };
